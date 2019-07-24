@@ -19,24 +19,28 @@ class Loss(nn.Module):
         abs_y = cv2.convertScaleAbs(sobel_y)
         output = cv2.addWeighted(abs_x, self.arfa, abs_y, self.beta, 0)
         return output
-       # cv2.imshow('output', output)
-       # cv2.waitKey(0)
 
-    def forward(self, input, target):
+    # cv2.imshow('output', output)
+    # cv2.waitKey(0)
+
+    def forward(self, input, target, tp='float'):
+        if tp == 'float':
+            input = (input * 256 + 0.5) // 1
+            target = (target * 256 + 0.5) // 1
         input = self.sobel(input)
         target = self.sobel(target)
         Lp = lp_loss()
-        return Lp(torch.from_numpy(input), torch.from_numpy(target))
+        return Lp(torch.from_numpy(input / 256), torch.from_numpy(target / 256))
 
 
 if __name__ == '__main__':
     input = cv2.imread('./test.jpeg')
     input = np.sum(input, 2)
-    input = (input + 0.5) // 3
+    input = (input + 0.5) // 3 / 256
     test = Loss()
-    x=input.copy()
-    for i in range(0,100):
-        temp=x[i].copy()
-        x[i]=x[i+400]
-        x[i+400]=temp
-    print(test(input,x))
+    x = input.copy()
+    for i in range(0, 400):
+        temp = x[i].copy()
+        x[i] = x[i + 400]
+        x[i + 400] = temp
+    print(test(input, x))
