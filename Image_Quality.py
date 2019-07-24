@@ -44,6 +44,17 @@ class Estimate(nn.Module):
         return sobel(input, target)
 
 
+def toYUV(x):
+    y = x.contiguous().view(-1, 3).double()
+    mat = torch.tensor([[0.257, -0.148, 0.439],
+                        [0.564, -0.291, -0.368],
+                        [0.098, 0.439, -0.071]]).double()
+    bias = torch.tensor([16.0 / 255.0, 128.0 / 255.0, 128.0 / 255.0]).double()
+    y = y.mm(mat) + bias
+    y = y.view(3, x.shape[1], x.shape[2])
+    return y
+
+
 if __name__ == '__main__':
     input = cv2.imread('./test.jpeg')
     # input = np.sum(input, 2)
@@ -58,6 +69,12 @@ if __name__ == '__main__':
     x = np.swapaxes(x, 0, 2)
     input = torch.from_numpy(input)
     x = torch.from_numpy(x)
+    print(test.L1(input, x))
+    print(test.SSIM(input, x))
+    print(test.PSNR(input, x))
+    print(test.Sobel(input, x))
+    input = toYUV(input)
+    x = toYUV(x)
     print(test.L1(input, x))
     print(test.SSIM(input, x))
     print(test.PSNR(input, x))
