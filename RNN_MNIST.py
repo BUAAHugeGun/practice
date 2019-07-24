@@ -24,7 +24,7 @@ class RNN(torch.nn.Module):
         # h_n: [num_layers,batch_size, hidden_size] # 虽然LSTM的batch_first为True,但是h_n/c_n的第一维还是num_layers
         # c_n: 同h_n
         output, (h_n, c_n) = self.rnn(x)
-        #print(output.size())
+        # print(output.size())
         # output_in_last_timestep=output[:,-1,:] # 也是可以的
         output_in_last_timestep = h_n[-1, :, :]
         # print(output_in_last_timestep.equal(output[:,-1,:])) #ture
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     for epoch in range(10):  # 数据集只迭代一次
         for step, input_data in enumerate(dataloader):
             x, y = input_data
-            print(x.view(-1,28,28).shape)
+            print(x.view(-1, 28, 28).shape)
             pred = net(x.view(-1, 28, 28))
 
             loss = loss_F(pred, y)  # 计算loss

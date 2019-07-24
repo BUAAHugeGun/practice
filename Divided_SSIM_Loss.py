@@ -17,14 +17,17 @@ class Loss(nn.Module):
         if input.shape != target.shape:
             sys.stderr.write("expected input shape:{}, but get shape:{}".format(target.shape, input.shape))
             assert 0
+        if len(input.shape) == 2:
+            input = input.unsqueeze(0)
+            target = target.unsqueeze(0)
         n = input.shape[0] * input.shape[1]
         mu_x = input.sum() / n
         mu_y = target.sum() / n
         SSIM_L = (2. * mu_x * mu_y + self.SSIM_c1) / (mu_x * mu_x + mu_y * mu_y + self.SSIM_c1)
         return SSIM_L
 
-    def SSIM_Loss(self,input,target):
-        return 1-self.SSIM(input,target)
+    def SSIM_Loss(self, input, target):
+        return 1 - self.SSIM(input, target)
 
     def calc_dfs(self, input, target, deep):
         ret = self.SSIM_Loss(input, target) * self.k_Loss[deep]
@@ -54,11 +57,11 @@ if __name__ == "__main__":
     x = (img[:][0] + img[:][1] + img[:][2]) / 3 / 256
     input = x[5:261, 5:261]
     target = x[15:271, 15:271]
-    print(test(input, target))
     input = torch.from_numpy(input)
     target = torch.from_numpy(target)
-    l1=L1()
-    print(l1(input,target))
+    print(test(input, target))
+    l1 = L1()
+    print(l1(input, target))
 
 """
 (1,1)     0.003774832937427805 

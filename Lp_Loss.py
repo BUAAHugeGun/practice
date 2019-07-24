@@ -11,9 +11,14 @@ class Loss(nn.Module):
         self.p = p
 
     def forward(self, input, target):
+        if input.shape != target.shape:
+            assert 0
+        if len(input.shape) == 2:
+            input = input.unsqueeze(0)
+            target = target.unsqueeze(0)
         ret = (torch.abs(input - target) ** self.p).sum() ** (1. / self.p)  # type: float
         if self.average == True:
-            return ret / (input.shape[0] * input.shape[1])
+            return ret / (input.shape[1] * input.shape[2])
         else:
             return ret
 

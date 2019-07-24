@@ -16,12 +16,15 @@ class Loss(nn.Module):
         self.k_L1 = k_L1
         self.k_SSIM = k_SSIM
 
-    def SSIM(self,input,target):
-        n_input = input.shape[0] * input.shape[1]
-        n_target = target.shape[0] * target.shape[1]
-        if n_input != n_target:
+    def SSIM(self, input, target):
+        if input.shape != target.shape:
             sys.stderr.write("expected input size :{} but get size :{}".format(target.shape, input.shape))
             assert 0
+        if len(input.shape) == 2:
+            input = input.unsqueeze(0)
+            target = target.unsqueeze(0)
+        n_input = input.shape[1] * input.shape[2] * input.shape[0]
+        n_target = target.shape[1] * target.shape[2] * target.shape[0]
         mu_x = input.sum() / n_input
         mu_y = target.sum() / n_target
         sigma_x = math.sqrt(((mu_x - input) ** 2).sum() / n_input)
@@ -33,7 +36,7 @@ class Loss(nn.Module):
         return (SSIM_L ** self.arfa) * (SSIM_C ** self.beta) * (SSIM_S ** self.gamma)
 
     def forward(self, input, target):
-        return 1-self.SSIM(input,target)
+        return 1 - self.SSIM(input, target)
 
 
 if __name__ == "__main__":
