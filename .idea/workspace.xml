@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d78f5aef-a855-4578-b90e-e4f61b317aba" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,11 +12,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RNN_MNIST.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="352">
-              <caret line="47" column="36" lean-forward="true" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+              <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SSIM_Loss.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Sobel_Loss.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="447">
+              <caret line="40" column="21" lean-forward="true" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/L1_and_SSIM_loss.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Divided_SSIM_Loss.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lp_Loss.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="13" column="89" selection-start-line="13" selection-start-column="89" selection-end-line="13" selection-end-column="89" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -48,10 +107,12 @@
         <option value="$PROJECT_DIR$/L1andSSIMloss.py" />
         <option value="$PROJECT_DIR$/SSIM.py" />
         <option value="$PROJECT_DIR$/SSIM_Loss.py" />
-        <option value="$PROJECT_DIR$/Lp_Loss.py" />
         <option value="$PROJECT_DIR$/L1_and_SSIM_loss.py" />
         <option value="$PROJECT_DIR$/Divided_SSIM_Loss.py" />
         <option value="$PROJECT_DIR$/RNN_MNIST.py" />
+        <option value="$PROJECT_DIR$/Sobel.py" />
+        <option value="$PROJECT_DIR$/Lp_Loss.py" />
+        <option value="$PROJECT_DIR$/Sobel_Loss.py" />
       </list>
     </option>
   </component>
@@ -66,7 +127,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -78,6 +138,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -100,7 +161,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.RNN_MNIST">
+  <component name="RunManager" selected="Python.Sobel_Loss">
     <configuration name="Divided_SSIM_Loss" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="practice" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -189,7 +250,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="SSIM_Loss" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Sobel_Loss" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="practice" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -202,7 +263,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SSIM_Loss.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Sobel_Loss.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -213,11 +274,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Sobel_Loss" />
         <item itemvalue="Python.RNN_MNIST" />
         <item itemvalue="Python.Divided_SSIM_Loss" />
         <item itemvalue="Python.L1_and_SSIM_loss" />
         <item itemvalue="Python.Lp_Loss" />
-        <item itemvalue="Python.SSIM_Loss" />
       </list>
     </recent_temporary>
   </component>
@@ -234,22 +295,23 @@
       <workItem from="1563335389456" duration="6513000" />
       <workItem from="1563531540636" duration="5960000" />
       <workItem from="1563855332027" duration="3402000" />
+      <workItem from="1563946550375" duration="3580000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15875000" />
+    <option name="totallyTimeSpent" value="19455000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1984" y="-4" width="1857" height="1085" extended-state="6" />
+    <frame x="1985" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2556724" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2589928" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3299285" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3299285" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -276,6 +338,7 @@
     <SUITE FILE_PATH="coverage/practice$L1_and_SSIM_loss.coverage" NAME="L1_and_SSIM_loss Coverage Results" MODIFIED="1563340514162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/practice$SSIM.coverage" NAME="SSIM Coverage Results" MODIFIED="1563340111152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/practice$Lp_Loss.coverage" NAME="Lp_Loss Coverage Results" MODIFIED="1563340330554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/practice$Sobel_Loss.coverage" NAME="Sobel_Loss Coverage Results" MODIFIED="1563950062382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/practice$SSIM_Loss.coverage" NAME="SSIM_Loss Coverage Results" MODIFIED="1563340127467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/practice$Divided_SSIM_Loss.coverage" NAME="Divided_SSIM_Loss Coverage Results" MODIFIED="1563536177667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -296,9 +359,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python3.7/site-packages/torch/nn/modules/rnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-938">
+          <caret line="483" column="8" selection-start-line="483" selection-start-column="8" selection-end-line="483" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sobel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Divided_SSIM_Loss.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
+        <state relative-caret-position="513">
           <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -316,10 +396,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lp_Loss.py">
+    <entry file="file://$PROJECT_DIR$/RNN_MNIST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="352">
+          <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
@@ -328,25 +408,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SSIM_Loss.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="95" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="95" />
+        <state relative-caret-position="171">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.7/site-packages/torch/nn/modules/rnn.py">
+    <entry file="file://$PROJECT_DIR$/Lp_Loss.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-938">
-          <caret line="483" column="8" selection-start-line="483" selection-start-column="8" selection-end-line="483" selection-end-column="8" />
+        <state relative-caret-position="219">
+          <caret line="13" column="89" selection-start-line="13" selection-start-column="89" selection-end-line="13" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RNN_MNIST.py">
+    <entry file="file://$PROJECT_DIR$/Sobel_Loss.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="47" column="36" lean-forward="true" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+        <state relative-caret-position="447">
+          <caret line="40" column="21" lean-forward="true" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
