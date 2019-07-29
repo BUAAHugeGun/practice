@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import time
 
 
 class DividedSsimLoss(nn.Module):
@@ -12,16 +13,17 @@ class DividedSsimLoss(nn.Module):
         self.min_size = 256
 
     def SSIM(self, input, target):
-        mu_x = input.sum(dim=[2, 3])
-        mu_y = target.sum(dim=[2, 3])
+        mu_x = input.mean(dim=[2, 3])
+        mu_y = target.mean(dim=[2, 3])
         SSIM_L = (2. * mu_x * mu_y + self.SSIM_c1) / (mu_x ** 2 + mu_y ** 2 + self.SSIM_c1)
         return SSIM_L.mean()
 
     def SSIM_Loss(self, input, target):
         return 1 - self.SSIM(input, target)
 
-    def calc_dfs(self, input, target, deep):
+    def calc_dfs(self, input, target):
         ret = 0.
+        deep = 0
         while True:
             if len(input.shape) == 3:
                 input = input.unsqueeze(1)
@@ -39,8 +41,30 @@ class DividedSsimLoss(nn.Module):
                  target[:, :, mid:, mid:]])
             deep += 1
 
-    def forward(self, input, target):
+    def calc_dfs_from_bottom_to_up(self, input, target):
+        def ssim_layer(x, y):
+            xx = x**2
+            yy = y**2
+            xy = x*y
+            ans = (2*xy + self.SSIM_c1) / (xx + yy + self.SSIM_c1)
+            return 1 - ans.mean()
+
+        input = input.unsqueeze(1)
+        target = target.unsqueeze(1)
+        ret = 0.
+        for i in range(9):
+            ret += ssim_layer(input, target) * self.k_Loss[-(i+1)]
+            input = F.avg_pool2d(input, kernel_size=2, stride=2)
+            target = F.avg_pool2d(target, kernel_size=2, stride=2)
+
+        return ret
+
+    def forward(self, input, target, type='from_bottom_to_up'):
         assert (input.shape == target.shape)
+        cal_func_dict = {'from_top_to_down': self.calc_dfs, 'from_bottom_to_up': self.calc_dfs_from_bottom_to_up}
+        assert (type in cal_func_dict.keys())
+        cal_func = cal_func_dict[type]
+
         B, C, H, W = input.shape
         L = self.min_size
         assert (H >= L and W >= L)
@@ -63,15 +87,17 @@ class DividedSsimLoss(nn.Module):
         loss_tile = []
         for h in range(0, H, L):
             for w in range(0, W, L):
-                # print(h, w)
-                loss_tile.append(self.calc_dfs(input_gray[:, h:h + L, w:w + L], target_gray[:, h:h + L, w:w + L], 0))
-                # print(2)
+                old = time.time()
+                loss_tile.append(cal_func(input_gray[:, h:h+L, w:w+L], target_gray[:, h:h+L, w:w+L]))
+                print(time.time() - old)
         return sum(loss_tile) / len(loss_tile)
 
 
 if __name__ == "__main__":
     criterion = DividedSsimLoss()
-    input = torch.randn(4, 3, 288, 288)
-    target = torch.randn(4, 3, 288, 288)
-    loss = criterion(input, target)
+    input = torch.randn(1, 3, 288, 288)
+    target = torch.randn(1, 3, 288, 288)
+    loss = criterion(input, target, type='from_bottom_to_up')
+    print(loss.item())
+    loss = criterion(input, target, type='from_top_to_down')
     print(loss.item())
