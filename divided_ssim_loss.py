@@ -12,33 +12,38 @@ class DividedSsimLoss(nn.Module):
         self.min_size = 256
 
     def SSIM(self, input, target):
-        mu_x = input.sum(dim=[1,2])
-        mu_y = target.sum(dim=[1,2])
-        SSIM_L = (2. * mu_x * mu_y + self.SSIM_c1) / (mu_x**2 + mu_y**2 + self.SSIM_c1)
+        mu_x = input.sum(dim=[2, 3])
+        mu_y = target.sum(dim=[2, 3])
+        SSIM_L = (2. * mu_x * mu_y + self.SSIM_c1) / (mu_x ** 2 + mu_y ** 2 + self.SSIM_c1)
         return SSIM_L.mean()
 
     def SSIM_Loss(self, input, target):
         return 1 - self.SSIM(input, target)
 
     def calc_dfs(self, input, target, deep):
-        ret = self.SSIM_Loss(input, target) * self.k_Loss[deep]
-        B, H, W = input.shape
-        if H == 1 or W == 1:
-            return ret
-        mid = (H + 1) // 2
-        ret += 0.25 * (
-                self.calc_dfs(input[:, :mid, :mid], target[:, :mid, :mid], deep + 1) +
-                self.calc_dfs(input[:, :mid, mid:], target[:, :mid, mid:], deep + 1) +
-                self.calc_dfs(input[:, mid:, :mid], target[:, mid:, :mid], deep + 1) +
-                self.calc_dfs(input[:, mid:, mid:], target[:, mid:, mid:], deep + 1)
-        )
-        return ret
+        ret = 0.
+        while True:
+            if len(input.shape) == 3:
+                input = input.unsqueeze(1)
+                target = target.unsqueeze(1)
+            B, H, W = input.shape[1:]
+            ret += self.SSIM_Loss(input, target) * self.k_Loss[deep]
+            if H == 1 or W == 1:
+                return ret
+            mid = (H + 1) // 2
+            input = torch.cat(
+                [input[:, :, :mid, :mid], input[:, :, :mid, mid:],
+                 input[:, :, mid:, :mid], input[:, :, mid:, mid:]])
+            target = torch.cat(
+                [target[:, :, :mid, :mid], target[:, :, :mid, mid:], target[:, :, mid:, :mid],
+                 target[:, :, mid:, mid:]])
+            deep += 1
 
     def forward(self, input, target):
-        assert(input.shape == target.shape)
+        assert (input.shape == target.shape)
         B, C, H, W = input.shape
         L = self.min_size
-        assert(H >= L and W >= L)
+        assert (H >= L and W >= L)
 
         pad_h = -H % L
         pad_w = -W % L
@@ -48,8 +53,8 @@ class DividedSsimLoss(nn.Module):
         if C == 3:
             device = torch.get_device(input) if 'cuda' in input.type() else 'cpu'
             self.rgb2gray = self.rgb2gray.to(device)
-            input_gray = (input_pad*self.rgb2gray).sum(dim=1).squeeze(1)
-            target_gray = (target_pad*self.rgb2gray).sum(dim=1).squeeze(1)
+            input_gray = (input_pad * self.rgb2gray).sum(dim=1).squeeze(1)
+            target_gray = (target_pad * self.rgb2gray).sum(dim=1).squeeze(1)
         else:
             input_gray = input_pad.squeeze(1)
             target_gray = target_pad.squeeze(1)
@@ -58,15 +63,15 @@ class DividedSsimLoss(nn.Module):
         loss_tile = []
         for h in range(0, H, L):
             for w in range(0, W, L):
-                print(1)
-                loss_tile.append(self.calc_dfs(input_gray[:, h:h+L, w:w+L], target_gray[:, h:h+L, w:w+L], 0))
-                print(2)
+                # print(h, w)
+                loss_tile.append(self.calc_dfs(input_gray[:, h:h + L, w:w + L], target_gray[:, h:h + L, w:w + L], 0))
+                # print(2)
         return sum(loss_tile) / len(loss_tile)
 
 
 if __name__ == "__main__":
     criterion = DividedSsimLoss()
-    input = torch.randn(4, 3, 288, 288).cuda()
-    target = torch.randn(4, 3, 288, 288).cuda()
+    input = torch.randn(4, 3, 288, 288)
+    target = torch.randn(4, 3, 288, 288)
     loss = criterion(input, target)
     print(loss.item())

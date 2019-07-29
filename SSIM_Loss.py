@@ -20,11 +20,8 @@ class Loss(nn.Module):
         if input.shape != target.shape:
             sys.stderr.write("expected input size :{} but get size :{}".format(target.shape, input.shape))
             assert 0
-        if len(input.shape) == 2:
-            input = input.unsqueeze(0)
-            target = target.unsqueeze(0)
-        n_input = input.shape[1] * input.shape[2] * input.shape[0]
-        n_target = target.shape[1] * target.shape[2] * target.shape[0]
+        n_input = input.shape[1] * input.shape[2] * input.shape[3]
+        n_target = target.shape[1] * target.shape[2] * target.shape[3]
         mu_x = input.sum() / n_input
         mu_y = target.sum() / n_target
         sigma_x = math.sqrt(((mu_x - input) ** 2).sum() / n_input)
@@ -40,9 +37,9 @@ class Loss(nn.Module):
 
 
 if __name__ == "__main__":
-    x = torch.randn([10, 10])
-    y = torch.randn([10, 10])
-    z = torch.randn([9, 10])
+    x = torch.randn([2, 3, 10, 10])
+    y = torch.randn([2, 3, 10, 10])
+    z = torch.randn([2, 3, 9, 10])
     test = Loss()
     print(test(x, x))
     print(test(x, y))
